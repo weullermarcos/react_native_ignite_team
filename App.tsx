@@ -1,6 +1,7 @@
 import { StatusBar } from 'react-native';
 import { ThemeProvider } from 'styled-components';
 import { Groups } from '@screens/Groups';
+import { NewGroup } from '@screens/NewGroup';
 import { Loading } from '@components/Loading';
 import theme  from './src/theme';
 
@@ -17,7 +18,7 @@ export default function App() {
       <StatusBar barStyle="light-content" translucent={true} backgroundColor="transparent"/>
       
       {/* Se as fontes ainda não estiverem carregadas - Mostra o load */}
-      { fontsLoaded ? <Groups /> : <Loading /> }
+      { fontsLoaded ? <NewGroup /> : <Loading /> }
 
     </ThemeProvider>
   );

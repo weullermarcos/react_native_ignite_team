@@ -27,6 +27,7 @@ export function Groups() {
         )}
         ListEmptyComponent={() => <ListEmpty message='Ainda não há turmas cadastradas!'/>}
         contentContainerStyle={groups.length === 0 && {flex: 1}}
+        showsVerticalScrollIndicator = {false}
       />
 
       <Button title='Criar nova turma'/>

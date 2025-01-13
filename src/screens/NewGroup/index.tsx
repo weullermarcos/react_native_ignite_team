@@ -6,6 +6,7 @@ import { Header } from '@components/Header';
 import { HighLight } from '@components/HighLight';
 import { Button } from '@components/Button';
 import { Input } from '@components/Input';
+import { groupCrate } from '@storage/group/groupCreate';
 
 export function NewGroup() {
 
@@ -14,8 +15,17 @@ export function NewGroup() {
 
   const navigation = useNavigation();
 
-  function handleNew(){
-    navigation.navigate('players', {group: group});
+  async function handleNew(){
+    
+    try{
+
+      await groupCrate(group); //Armazena o grupo localmente
+      navigation.navigate('players', {group: group});
+    }
+    catch(error){
+      console.log(error);
+    }
+
   }
 
   return (

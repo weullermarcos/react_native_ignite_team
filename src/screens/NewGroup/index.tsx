@@ -7,6 +7,8 @@ import { HighLight } from '@components/HighLight';
 import { Button } from '@components/Button';
 import { Input } from '@components/Input';
 import { groupCrate } from '@storage/group/groupCreate';
+import { AppError } from '@utils/AppError';
+import { Alert } from 'react-native';
 
 export function NewGroup() {
 
@@ -19,11 +21,24 @@ export function NewGroup() {
     
     try{
 
+      if(group.trim().length === 0) {
+        return Alert.alert('Novo Grupo', 'Informe o nome da turma!');
+      }
+
       await groupCrate(group); //Armazena o grupo localmente
       navigation.navigate('players', {group: group});
     }
     catch(error){
-      console.log(error);
+
+      if(error instanceof AppError){ //Verificando se o erro retornado é do tipo criado
+
+        Alert.alert('Novo Grupo', error.message);
+      }
+      else{
+
+        Alert.alert('Novo Grupo', 'Não foi possível criar um novo grupo!');
+        console.log(error);
+      }
     }
 
   }

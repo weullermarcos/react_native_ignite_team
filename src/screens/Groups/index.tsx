@@ -33,6 +33,10 @@ export function Groups() {
     }
   }
 
+  function handleOpenGroup(group: string){
+    navigation.navigate('players', { group }); //Abre a tela de jogadores passando o nome do grupo como parâmetro
+  }
+
   useFocusEffect(useCallback(() =>{
     fetchGroups(); //Chama a função fetchGroups quando a tela é renderizada
   }, []));
@@ -48,6 +52,7 @@ export function Groups() {
         renderItem={({ item }) => (
           <GroupCard 
             title={item} 
+            onPress={() => handleOpenGroup(item)}
           />
         )}
         ListEmptyComponent={() => <ListEmpty message='Ainda não há turmas cadastradas!'/>}
